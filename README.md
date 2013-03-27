@@ -8,14 +8,10 @@ This workflow for [Alfred 2](http://www.alfredapp.com/) will search you snippets
 
 ![](https://github.com/pahen/Snippets.alfredworkflow/raw/master/img/search.png)
 
-```ENTER``` = Copy to clipboard
+```ENTER``` to copy to clipboard.
 
-```CMD + ENTER``` = Copy & paste
+```CMD + ENTER``` to copy & paste.
 
-```ALT + ENTER``` = View as Large Type
+```ALT + ENTER``` to view as Large Type.
 
-You can also create new snippets from a text selection anywhere by pressing ```CTRL + ALT + CMD + S```.
-
-## TODO
-
-Add support for searching on multiple keywords separated with space.
+You can also create a new snippet from a text selection in a application by pressing ```CTRL + ALT + CMD + S```.

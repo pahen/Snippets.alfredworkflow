@@ -1,6 +1,6 @@
 <?php
 
-$keyword = $argv[1];
+$keywords = $argv[1];
 $doc = new DOMDocument;
 
 // this file has been serialized from Core Data (http://en.wikipedia.org/wiki/Core_Data).
@@ -17,12 +17,14 @@ foreach ($xpath->query('//object[@type="TAG"]') as $tag) {
 echo '<?xml version="1.0"?>';
 echo '<items>';
 
+// iterate over all snippets
 foreach ($xpath->query('//object[@type="SNIPPET"]') as $snippet) {
-	// ignore deleted snippets
+	// ignore deleted ones
 	if ($xpath->query('./attribute[@name="dateremoved"]', $snippet)->item(0)) {
 		continue;
 	}
 
+	$match = true;
 	$tags = array();
 	$name = $xpath->query('./attribute[@name="name"]', $snippet)->item(0)->nodeValue;
 	$tagIds = $xpath->query('./relationship[@name="tags"]', $snippet)->item(0)->getAttribute('idrefs');
@@ -35,8 +37,15 @@ foreach ($xpath->query('//object[@type="SNIPPET"]') as $snippet) {
 		}
 	}
 
-	// do a case-insensitive match and see if we have a snippet with a matching tag, name, or code
-	if (in_array(strtolower($keyword), array_map('strtolower', $tags)) || stristr($name, $keyword) || stristr($code, $keyword)) {
+	// do a case-insensitive match on all keywords and see if we have a snippet with a matching tag, name, or code
+	foreach(explode(' ', $keywords) as $keyword) {
+		if (!in_array(strtolower($keyword), array_map('strtolower', $tags)) && !stristr($name, $keyword) && !stristr($code, $keyword)) {
+			$match = false;
+		}
+	}
+
+	// we got a match!
+	if ($match) {
 		$title = $name;
 
 		if (!empty($tags)) {
