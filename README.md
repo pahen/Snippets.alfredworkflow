@@ -1,6 +1,6 @@
 # Snippets.alfredworkflow
 
-[Download](https://github.com/pahen/Snippets.alfredworkflow/raw/master/CloudApp.alfredworkflow)
+[Download](https://github.com/pahen/Snippets.alfredworkflow/raw/master/Snippets.alfredworkflow)
 
 This workflow for [Alfred 2](http://www.alfredapp.com/) will search you snippets from the application [Snippets](http://www.snippetsapp.com/). It's not required to have Snippets running since it will search the data storage (XML file) directly.
 
