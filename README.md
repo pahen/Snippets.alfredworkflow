@@ -14,4 +14,4 @@ This workflow for [Alfred 2](http://www.alfredapp.com/) will search you snippets
 
 ```ALT + ENTER``` to view as Large Type.
 
-You can also create a new snippet from a text selection in a application by pressing ```CTRL + ALT + CMD + S```.
+You can also create a new snippet from a text selection if you open the workflow and assign a hotkey to the "Selection in OS X" trigger.

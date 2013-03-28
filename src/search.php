@@ -41,6 +41,7 @@ foreach ($xpath->query('//object[@type="SNIPPET"]') as $snippet) {
 	foreach(explode(' ', $keywords) as $keyword) {
 		if (!in_array(strtolower($keyword), array_map('strtolower', $tags)) && !stristr($name, $keyword) && !stristr($code, $keyword)) {
 			$match = false;
+			break;
 		}
 	}
 
