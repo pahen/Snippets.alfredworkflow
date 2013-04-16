@@ -1,7 +1,7 @@
 <?php
 
 $keywords = $argv[1];
-$doc = new DOMDocument;
+$doc = new DOMDocument('1.0', 'utf-8');
 
 // this file has been serialized from Core Data (http://en.wikipedia.org/wiki/Core_Data).
 $doc->load(getenv('HOME') . '/Library/Application Support/Snippets/Snippets.xml');
@@ -52,6 +52,11 @@ foreach ($xpath->query('//object[@type="SNIPPET"]') as $snippet) {
 		if (!empty($tags)) {
 			$title .= ' (' . implode(', ', $tags) . ')';
 		}
+
+		// decode Unicode escape sequences to proper UTF-8 encoded characters (like “\u3e00” to ">")
+		$code = preg_replace_callback('/(\\\\+)u([0-9a-fA-F]{4})/u', function($match) {
+			return $match[1] == '\\\\' ? $match[0] : mb_convert_encoding(pack('H*', $match[2]), 'UTF-8', 'UCS-2LE');
+		}, $code);
 
 		// unescape slashes (they are escaped in the XML file)
 		$code = str_replace('\\\\', '\\', $code);
